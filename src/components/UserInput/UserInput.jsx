@@ -1,7 +1,7 @@
 import "./UserInput.css";
 import { useState } from "react";
 
-export default function UserInput({ input }) {
+export default function UserInput({ onCalculate }) {
   const [userInput, setUserInput] = useState({
     initialInvestment: 0,
     annualInvestment: 0,
@@ -9,14 +9,15 @@ export default function UserInput({ input }) {
     duration: 0,
   });
   function handleChangeValue(inputIdentifier, value) {
-    setUserInput((prevUserInput) => {
-      //Gets previous state
+    //Gets previous state
 
-      return {
-        ...prevUserInput, // Copys all existing values
-        [inputIdentifier]: value, // Updates only the changed field
-      };
-    });
+    const updatedInput = {
+      ...userInput,
+      [inputIdentifier]: +value,
+    };
+
+    setUserInput(updatedInput);
+    onCalculate(updatedInput);
   }
   return (
     <div id="user-input">
