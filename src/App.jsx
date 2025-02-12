@@ -6,11 +6,17 @@ import { calculateInvestmentResults } from "./util/investment";
 import { useState } from "react";
 
 function App() {
+  const [results, setResults] = useState(null);
+
+  function handleCalculate(userInput) {
+    const calculetedResults = calculateInvestmentResults(userInput);
+    setResults(calculetedResults);
+  }
   return (
     <>
       <Header />
-      <UserInput />
-      <ResultTable />
+      <UserInput onCalculate={handleCalculate} />
+      {results && <ResultTable results={results} />}
     </>
   );
 }

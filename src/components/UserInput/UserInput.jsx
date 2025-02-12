@@ -3,10 +3,10 @@ import { useState } from "react";
 
 export default function UserInput({ onCalculate }) {
   const [userInput, setUserInput] = useState({
-    initialInvestment: 0,
-    annualInvestment: 0,
-    expecterReturn: 0,
-    duration: 0,
+    initialInvestment: 110,
+    annualInvestment: 30,
+    expectedReturn: 6,
+    duration: 10,
   });
   function handleChangeValue(inputIdentifier, value) {
     //Gets previous state
@@ -18,6 +18,7 @@ export default function UserInput({ onCalculate }) {
 
     setUserInput(updatedInput);
     onCalculate(updatedInput);
+    console.log("elo");
   }
   return (
     <div id="user-input">
@@ -51,9 +52,9 @@ export default function UserInput({ onCalculate }) {
           <input
             type="number"
             required
-            value={userInput.expecterReturn}
+            value={userInput.expectedReturn}
             onChange={(event) =>
-              handleChangeValue("expecterReturn", event.target.value)
+              handleChangeValue("expectedReturn", event.target.value)
             }
           />
         </div>
